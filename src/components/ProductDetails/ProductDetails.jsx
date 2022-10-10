@@ -1,23 +1,6 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getProduct } from "../../services/backend";
-
 import "./ProductDetails.css";
 
-const ProductDetails = () => {
-  const [product, setProduct] = useState();
-
-  let { id } = useParams();
-
-  useEffect(() => {
-    (async () => {
-      setProduct(await getProduct(id));
-    })();
-    console.log(product);
-  }, []);
-
-  if (!product) return null;
-
+const ProductDetails = ({ product }) => {
   return (
     <main className="limitedWidthBlockContainer">
       <div className="limitedWidthBlock">
@@ -63,7 +46,7 @@ const ProductDetails = () => {
                     name="itemQuantity"
                     min="1"
                     max="100"
-                    value="0"
+                    defaultValue="0"
                     id="quantity"
                   />
                 </div>

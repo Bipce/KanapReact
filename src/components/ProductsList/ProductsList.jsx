@@ -1,19 +1,7 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getProducts } from "../../services/backend";
 import "./ProductsList.css";
 
-const ProductsList = () => {
-  const [products, setProducts] = useState();
-
-  useEffect(() => {
-    (async () => {
-      setProducts(await getProducts());
-    })();
-  }, []);
-
-  if (!products) return null;
-
+const ProductsList = ({ products }) => {
   return (
     <main className="limitedWidthBlockContainer">
       <div className="limitedWidthBlock">
