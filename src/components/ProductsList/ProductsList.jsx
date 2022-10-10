@@ -12,26 +12,24 @@ const ProductsList = () => {
     })();
   }, []);
 
-  console.log(products);
-
   if (!products) return null;
 
   return (
-    <main class="limitedWidthBlockContainer">
-      <div class="limitedWidthBlock">
-        <div class="titles">
+    <main className="limitedWidthBlockContainer">
+      <div className="limitedWidthBlock">
+        <div className="titles">
           <h1>Nos produits</h1>
           <h2>Une gamme d'articles exclusifs</h2>
         </div>
 
-        <section class="items" id="items">
+        <section className="items" id="items">
           {products.map((product) => {
             return (
-              <Link>
+              <Link to={`./products/${product._id}`} key={product._id}>
                 <article>
                   <img src={product.imageUrl} alt={product.altTxt} />
-                  <h3 class="productName">{product.name}</h3>
-                  <p class="productDescription">{product.description}</p>
+                  <h3 className="productName">{product.name}</h3>
+                  <p className="productDescription">{product.description}</p>
                 </article>
               </Link>
             );
