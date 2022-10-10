@@ -1,0 +1,13 @@
+components:
+<Navbar>
+<ProductsList>
+<ProductDetails>
+<CartProducts>
+<OrderForm>
+<Footer>
+
+pages:
+<Home> /
+<Product> /product/:id
+<Cart> /cart
+<Confirmation> /confirmation/:orderId
