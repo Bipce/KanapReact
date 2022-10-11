@@ -1,12 +1,29 @@
+import { useState } from "react";
+import { addToCart } from "../../services/cart";
 import "./ProductDetails.css";
 
 const ProductDetails = ({ product }) => {
+  const [color, setColor] = useState();
+  const [quantity, setQuantity] = useState(0);
+
+  const colorHandler = (e) => {
+    setColor(e.target.value);
+  };
+
+  const quantityHandler = (e) => {
+    setQuantity(parseInt(e.target.value));
+  };
+
   const addCartHandler = () => {
-    if (quantity.value <= 0 || quantity.value > 100) {
-      return alert("Veuillez sélectionner un nombre entre 1 et 100.");
+    if (quantity <= 0 || quantity > 100 || !color) {
+      return alert(
+        "Veuillez sélectionner une couleur et un nombre entre 1 et 100."
+      );
     }
 
-    localStorage.setItem("product", JSON.stringify(product));
+    addToCart(product, color, quantity);
+
+    alert("Produit ajouté au panier.");
   };
 
   return (
@@ -35,7 +52,11 @@ const ProductDetails = ({ product }) => {
               <div className="item__content__settings">
                 <div className="item__content__settings__color">
                   <label htmlFor="color-select">Choisir une couleur :</label>
-                  <select name="color-select" id="colors">
+                  <select
+                    name="color-select"
+                    id="colors"
+                    onChange={colorHandler}
+                  >
                     <option value="">--SVP, choisissez une couleur -- </option>
                     {product.colors.map((color) => (
                       <option key={color} value={color}>
@@ -56,6 +77,7 @@ const ProductDetails = ({ product }) => {
                     max="100"
                     defaultValue="0"
                     id="quantity"
+                    onChange={quantityHandler}
                   />
                 </div>
               </div>
