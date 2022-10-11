@@ -1,6 +1,14 @@
 import "./ProductDetails.css";
 
 const ProductDetails = ({ product }) => {
+  const addCartHandler = () => {
+    if (quantity.value <= 0 || quantity.value > 100) {
+      return alert("Veuillez sélectionner un nombre entre 1 et 100.");
+    }
+
+    localStorage.setItem("product", JSON.stringify(product));
+  };
+
   return (
     <main className="limitedWidthBlockContainer">
       <div className="limitedWidthBlock">
@@ -53,7 +61,9 @@ const ProductDetails = ({ product }) => {
               </div>
 
               <div className="item__content__addButton">
-                <button id="addToCart">Ajouter au panier</button>
+                <button type="submit" onClick={addCartHandler} id="addToCart">
+                  Ajouter au panier
+                </button>
               </div>
             </div>
           </article>
