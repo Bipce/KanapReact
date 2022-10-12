@@ -1,7 +1,7 @@
 import "./CartProducts.css";
 
-const CartProducts = () => {
-  let products = JSON.parse(localStorage.getItem("products"));
+const CartProducts = ({ products, productsCart }) => {
+  console.log(productsCart);
 
   return (
     <main className="limitedWidthBlockContainer">
@@ -10,49 +10,51 @@ const CartProducts = () => {
           <h1>Votre panier</h1>
           <section className="cart">
             <section id="cart__items">
-              {products.map((product) => (
-                <article
-                  className="cart__item"
-                  key={product.id}
-                  data-id={product.id}
-                >
-                  <div className="cart__item__img">
-                    <img
-                      src={product.imageUrl}
-                      alt="Photographie d'un canapé"
-                    />
-                  </div>
-                  <div className="cart__item__content">
-                    <div className="cart__item__content__titlePrice">
-                      <h2>Nom du produit</h2>
-                      <p>42,00 €</p>
+              {productsCart.map((product, i) => {
+                const currentProduct = products.find(
+                  (p) => p._id == product.id
+                );
+                return (
+                  <article className="cart__item" key={i} data-id={product.id}>
+                    <div className="cart__item__img">
+                      <img
+                        src={currentProduct.imageUrl}
+                        alt="Photographie d'un canapé"
+                      />
                     </div>
-                    <div className="cart__item__content__settings">
-                      <div className="cart__item__content__settings__quantity">
-                        <p>Qté : </p>
-                        <input
-                          type="number"
-                          className="itemQuantity"
-                          name="itemQuantity"
-                          min="1"
-                          max="100"
-                          value="42"
-                        />
+                    <div className="cart__item__content">
+                      <div className="cart__item__content__titlePrice">
+                        <h2>{currentProduct.name}</h2>
+                        <p>{currentProduct.price} €</p>
                       </div>
-                      <div className="cart__item__content__settings__delete">
-                        <p className="deleteItem">Supprimer</p>
+                      <div className="cart__item__content__settings">
+                        <div className="cart__item__content__settings__quantity">
+                          <p>Qté : </p>
+                          <input
+                            type="number"
+                            className="itemQuantity"
+                            name="itemQuantity"
+                            min="1"
+                            max="100"
+                            defaultValue={product.quantity}
+                          />
+                        </div>
+                        <div className="cart__item__content__settings__delete">
+                          <p className="deleteItem">Supprimer</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                );
+              })}
             </section>
 
             <div className="cart__price">
-              {/* <p>
-                Total (<span id="totalQuantity"><!-- 2 --></span> articles) :
-                <span id="totalPrice"><!-- 84,00 --></span> €
-              </p> */}
+              <p>
+                Total (<span id="totalQuantity">{products.quantity}</span>
+                {"nbr d'article"} articles) :
+                <span id="totalPrice">{"price"}</span> €
+              </p>
             </div>
 
             <div className="cart__order">

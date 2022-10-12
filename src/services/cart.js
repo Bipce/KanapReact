@@ -1,6 +1,6 @@
-export const addToCart = (product, color, quantity) => {
-  const key = "products";
+const key = "products";
 
+export const addToCart = (product, color, quantity) => {
   let products = JSON.parse(localStorage.getItem(key));
 
   if (products == null) products = [];
@@ -18,4 +18,8 @@ export const addToCart = (product, color, quantity) => {
   }
 
   localStorage.setItem(key, JSON.stringify(products));
+};
+
+export const getProductsCart = () => {
+  return JSON.parse(localStorage.getItem(key));
 };
