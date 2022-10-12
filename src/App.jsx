@@ -4,6 +4,7 @@ import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home.jsx";
 import Product from "./pages/Product";
+import Cart from "./pages/Cart";
 
 import "./App.css";
 
@@ -15,6 +16,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/products/:id" element={<Product />} />
+          <Route exact path="/cart" element={<Cart />} />
         </Routes>
         <Footer />
       </Router>
