@@ -1,6 +1,6 @@
 import "./CartProducts.css";
 
-const CartProducts = ({ products }) => {
+const CartProducts = ({ products, onQuantityChange }) => {
   const getArticlesNbr = () => {
     let articles = 0;
 
@@ -16,11 +16,8 @@ const CartProducts = ({ products }) => {
     for (const product of products) {
       totalPrice += product.price * product.quantity;
     }
-
     return totalPrice;
   };
-
-  console.log(getTotalPrice());
 
   return (
     <main className="limitedWidthBlockContainer">
@@ -53,6 +50,12 @@ const CartProducts = ({ products }) => {
                             min="1"
                             max="100"
                             defaultValue={product.quantity}
+                            onChange={(e) =>
+                              onQuantityChange(
+                                parseInt(e.target.value),
+                                product
+                              )
+                            }
                           />
                         </div>
                         <div className="cart__item__content__settings__delete">
@@ -64,7 +67,7 @@ const CartProducts = ({ products }) => {
                 );
               })}
             </section>
-            ;
+
             <div className="cart__price">
               <p>
                 Total (<span id="totalQuantity">{getArticlesNbr()}</span>{" "}

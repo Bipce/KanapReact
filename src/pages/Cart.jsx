@@ -26,9 +26,26 @@ const Cart = () => {
     })();
   }, []);
 
+  const onQuantityChange = (quantity, product) => {
+    const finalProductArr = [...finalProducts];
+
+    for (const item of finalProductArr) {
+      if (item.id == product.id) {
+        item.quantity = quantity;
+        break;
+      }
+    }
+    setFinalProducts(finalProductArr);
+  };
+
   if (!finalProducts) return null;
 
-  return <CartProducts products={finalProducts} />;
+  return (
+    <CartProducts
+      products={finalProducts}
+      onQuantityChange={onQuantityChange}
+    />
+  );
 };
 
 export default Cart;
