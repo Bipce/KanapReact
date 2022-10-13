@@ -1,7 +1,26 @@
 import "./CartProducts.css";
 
-const CartProducts = ({ products, productsCart }) => {
-  console.log(productsCart);
+const CartProducts = ({ products }) => {
+  const getArticlesNbr = () => {
+    let articles = 0;
+
+    for (const product of products) {
+      articles += product.quantity;
+    }
+    return articles;
+  };
+
+  const getTotalPrice = () => {
+    let totalPrice = 0;
+
+    for (const product of products) {
+      totalPrice += product.price * product.quantity;
+    }
+
+    return totalPrice;
+  };
+
+  console.log(getTotalPrice());
 
   return (
     <main className="limitedWidthBlockContainer">
@@ -10,22 +29,19 @@ const CartProducts = ({ products, productsCart }) => {
           <h1>Votre panier</h1>
           <section className="cart">
             <section id="cart__items">
-              {productsCart.map((product, i) => {
-                const currentProduct = products.find(
-                  (p) => p._id == product.id
-                );
+              {products.map((product, i) => {
                 return (
                   <article className="cart__item" key={i} data-id={product.id}>
                     <div className="cart__item__img">
                       <img
-                        src={currentProduct.imageUrl}
+                        src={product.imageUrl}
                         alt="Photographie d'un canapé"
                       />
                     </div>
                     <div className="cart__item__content">
                       <div className="cart__item__content__titlePrice">
-                        <h2>{currentProduct.name}</h2>
-                        <p>{currentProduct.price} €</p>
+                        <h2>{product.name}</h2>
+                        <p>{product.price} €</p>
                       </div>
                       <div className="cart__item__content__settings">
                         <div className="cart__item__content__settings__quantity">
@@ -48,15 +64,13 @@ const CartProducts = ({ products, productsCart }) => {
                 );
               })}
             </section>
-
+            ;
             <div className="cart__price">
               <p>
-                Total (<span id="totalQuantity">{products.quantity}</span>
-                {"nbr d'article"} articles) :
-                <span id="totalPrice">{"price"}</span> €
+                Total (<span id="totalQuantity">{getArticlesNbr()}</span>{" "}
+                articles) : <span id="totalPrice">{getTotalPrice()}</span> €
               </p>
             </div>
-
             <div className="cart__order">
               <form method="get" className="cart__order__form">
                 <div className="cart__order__form__question">

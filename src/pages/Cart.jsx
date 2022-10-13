@@ -5,19 +5,30 @@ import { getProductsCart } from "../services/cart";
 import CartProducts from "../components/CartProducts/CartProducts";
 
 const Cart = () => {
-  const [products, setProducts] = useState();
-  const [productsCart, setProductsCart] = useState();
+  const [finalProducts, setFinalProducts] = useState();
+  const cartArr = [];
 
   useEffect(() => {
     (async () => {
-      setProducts(await getProducts());
-      setProductsCart(getProductsCart());
+      const products = await getProducts();
+      const productsCart = getProductsCart();
+
+      for (const product of productsCart) {
+        const currentProduct = products.find((p) => p._id == product.id);
+        cartArr.push({
+          ...product,
+          imageUrl: currentProduct.imageUrl,
+          price: currentProduct.price,
+          name: currentProduct.name,
+        });
+      }
+      setFinalProducts(cartArr);
     })();
   }, []);
 
-  if (!products || !productsCart) return null;
+  if (!finalProducts) return null;
 
-  return <CartProducts products={products} productsCart={productsCart} />;
+  return <CartProducts products={finalProducts} />;
 };
 
 export default Cart;
