@@ -3,6 +3,7 @@ import { getProducts } from "../services/backend";
 import { getProductsCart, updateProductCart } from "../services/cart";
 
 import CartProducts from "../components/CartProducts/CartProducts";
+import OrderForm from "../components/OrderForm/OrderForm";
 
 const Cart = () => {
   const [finalProducts, setFinalProducts] = useState();
@@ -35,9 +36,10 @@ const Cart = () => {
         break;
       }
     }
-    setFinalProducts(finalProductArr);
 
     updateProductCart(finalProductArr);
+
+    setFinalProducts(finalProductArr);
   };
 
   const onDeleteProduct = (product) => {
@@ -50,19 +52,23 @@ const Cart = () => {
         break;
       }
     }
-    setFinalProducts(finalProductArr);
 
     updateProductCart(finalProductArr);
+
+    setFinalProducts(finalProductArr);
   };
 
   if (!finalProducts) return null;
 
   return (
-    <CartProducts
-      products={finalProducts}
-      onQuantityChange={onQuantityChange}
-      onDeleteProduct={onDeleteProduct}
-    />
+    <>
+      <CartProducts
+        products={finalProducts}
+        onQuantityChange={onQuantityChange}
+        onDeleteProduct={onDeleteProduct}
+      />
+      <OrderForm />
+    </>
   );
 };
 

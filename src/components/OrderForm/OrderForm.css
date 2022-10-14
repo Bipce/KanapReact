@@ -1,0 +1,58 @@
+.order-main {
+  padding-bottom: 90px;
+}
+
+.cart__order {
+  display: flex;
+  justify-content: center;
+  margin-top: 90px;
+}
+.cart__order__form {
+  width: 50%;
+}
+.cart__order__form__question {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+.cart__order__form__question input {
+  border-radius: 13px;
+  border: 0;
+  height: 26px;
+  margin-top: 4px;
+}
+.cart__order__form__question input:focus {
+  outline: none;
+}
+.cart__order__form__question p {
+  margin: 0;
+  color: #fbbcbc;
+  font-size: 15px;
+  margin-left: 8px;
+}
+.cart__order__form__submit {
+  display: flex;
+  justify-content: center;
+}
+.cart__order__form__submit input {
+  font-size: 22px;
+  border-radius: 40px;
+  border: 0;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 18px 28px;
+  cursor: pointer;
+  margin-top: 40px;
+}
+.cart__order__form__submit input:hover {
+  box-shadow: rgb(42 18 206 / 90%) 0 0 22px 6px;
+}
+
+@media (max-width: 575.98px) {
+  .cart__order {
+    justify-content: center;
+  }
+  .cart__order__form {
+    width: 75%;
+  }
+}
