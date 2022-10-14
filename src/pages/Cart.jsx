@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../services/backend";
-import { getProductsCart } from "../services/cart";
+import { getProductsCart, updateProductCart } from "../services/cart";
 
 import CartProducts from "../components/CartProducts/CartProducts";
 
@@ -30,12 +30,29 @@ const Cart = () => {
     const finalProductArr = [...finalProducts];
 
     for (const item of finalProductArr) {
-      if (item.id == product.id) {
+      if (item.id == product.id && item.color == product.color) {
         item.quantity = quantity;
         break;
       }
     }
     setFinalProducts(finalProductArr);
+
+    updateProductCart(finalProductArr);
+  };
+
+  const onDeleteProduct = (product) => {
+    const finalProductArr = [...finalProducts];
+
+    for (const i in finalProductArr) {
+      const item = finalProductArr[i];
+      if (item.id == product.id && item.color == product.color) {
+        finalProductArr.splice(i, 1);
+        break;
+      }
+    }
+    setFinalProducts(finalProductArr);
+
+    updateProductCart(finalProductArr);
   };
 
   if (!finalProducts) return null;
@@ -44,6 +61,7 @@ const Cart = () => {
     <CartProducts
       products={finalProducts}
       onQuantityChange={onQuantityChange}
+      onDeleteProduct={onDeleteProduct}
     />
   );
 };

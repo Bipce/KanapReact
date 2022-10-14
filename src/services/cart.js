@@ -23,3 +23,17 @@ export const addToCart = (product, color, quantity) => {
 export const getProductsCart = () => {
   return JSON.parse(localStorage.getItem(key));
 };
+
+export const updateProductCart = (products) => {
+  const productArr = [];
+
+  for (const product of products) {
+    productArr.push({
+      id: product.id,
+      color: product.color,
+      quantity: product.quantity,
+    });
+  }
+
+  localStorage.setItem(key, JSON.stringify(productArr));
+};

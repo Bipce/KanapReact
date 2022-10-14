@@ -1,6 +1,6 @@
 import "./CartProducts.css";
 
-const CartProducts = ({ products, onQuantityChange }) => {
+const CartProducts = ({ products, onQuantityChange, onDeleteProduct }) => {
   const getArticlesNbr = () => {
     let articles = 0;
 
@@ -17,6 +17,14 @@ const CartProducts = ({ products, onQuantityChange }) => {
       totalPrice += product.price * product.quantity;
     }
     return totalPrice;
+  };
+
+  const deleteProduct = (product) => {
+    for (const item of products) {
+      if (item.id == product.id && item.color == product.color) {
+        console.log(productCart);
+      }
+    }
   };
 
   return (
@@ -37,7 +45,9 @@ const CartProducts = ({ products, onQuantityChange }) => {
                     </div>
                     <div className="cart__item__content">
                       <div className="cart__item__content__titlePrice">
-                        <h2>{product.name}</h2>
+                        <h2>
+                          {product.name} {product.color}
+                        </h2>
                         <p>{product.price} €</p>
                       </div>
                       <div className="cart__item__content__settings">
@@ -59,7 +69,12 @@ const CartProducts = ({ products, onQuantityChange }) => {
                           />
                         </div>
                         <div className="cart__item__content__settings__delete">
-                          <p className="deleteItem">Supprimer</p>
+                          <p
+                            className="deleteItem"
+                            onClick={() => onDeleteProduct(product)}
+                          >
+                            Supprimer
+                          </p>
                         </div>
                       </div>
                     </div>
