@@ -8,16 +8,16 @@
 
 ## 📖 Overview
 
-Kanap is an e-commerce website for a sofa store, based on the OpenClassrooms project "Kanap".
+Kanap is an e-commerce website for a sofa store, built with React.
 
-During the course, the project had to be built with vanilla JavaScript, without any framework.
-Once it was completed, I decided on my own initiative to rebuild the whole frontend with React,
-to practice the library and compare both approaches on the same project.
+It is based on an existing vanilla JavaScript project. Rather than migrating that codebase, I created
+this new project directly with React, to practice the library and compare both approaches on the same
+project.
 
 Users can browse the catalog, choose a color and a quantity for each sofa, manage their cart and
 place an order.
 
-The backend API was provided by OpenClassrooms. It serves the products from in-memory data,
+The backend API comes from the original project. It serves the products from in-memory data,
 so no database is required.
 
 ---
@@ -33,7 +33,7 @@ so no database is required.
 * Axios
 * CSS3
 
-### Backend (provided by OpenClassrooms)
+### Backend (from the original project)
 
 * Node.js
 * Express
@@ -155,7 +155,7 @@ The project is complete and is no longer actively developed.
 
 ## 📝 Notes
 
-The goal of the React rebuild was to practice:
+The goal of this project was to practice:
 
 * React components and hooks
 * Client-side routing with React Router
