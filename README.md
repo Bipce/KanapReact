@@ -1,34 +1,164 @@
-# Kanap
+# 🛋️ Kanap
 
-## Introduction
+![React](https://img.shields.io/badge/React-18-blue?logo=react)
+![Vite](https://img.shields.io/badge/Vite-frontend-purple?logo=vite)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-F7DF1E?logo=javascript)
+![React Router](https://img.shields.io/badge/React_Router-6-CA4245?logo=reactrouter)
+![Express](https://img.shields.io/badge/Express-backend-black?logo=express)
 
-Kanap is a sofa sales site and a project that I had to do for my web development course.
-But we couldn't use React for it, so I build the project again using React this time.
+## 📖 Overview
 
-## Lunch project
+Kanap is an e-commerce website for a sofa store, based on the OpenClassrooms project "Kanap".
 
-### Back
+During the course, the project had to be built with vanilla JavaScript, without any framework.
+Once it was completed, I decided on my own initiative to rebuild the whole frontend with React,
+to practice the library and compare both approaches on the same project.
 
-The back is providing by OpenClassRoom.
+Users can browse the catalog, choose a color and a quantity for each sofa, manage their cart and
+place an order.
 
-#### Install
+The backend API was provided by OpenClassrooms. It serves the products from in-memory data,
+so no database is required.
 
-`npm install`
+---
 
-#### Lunch
+## 🧰 Tech Stack
 
-`node server`
+### Frontend
 
-The server should run on `localhost` with default port `3000`. 
-If the server runs on another port for any reason, this is printed to the console when the server starts, e.g. 
-`Listening on port 3001`.
+* React 18
+* Vite
+* JavaScript (ES6+)
+* React Router
+* Axios
+* CSS3
 
-### Front
+### Backend (provided by OpenClassrooms)
 
-#### Install
+* Node.js
+* Express
 
-`yarn`
+---
 
-#### Lunch
+## 🚀 Quick Start
 
-`yarn dev`
+### Backend
+
+```bash
+cd back
+npm install
+node server
+```
+
+The backend runs on:
+
+```bash
+http://localhost:3000
+```
+
+If port 3000 is already in use, the port actually used is printed in the console when the server starts
+(e.g. `Listening on port 3001`).
+
+### Frontend
+
+```bash
+cd front
+yarn
+yarn dev
+```
+
+The frontend runs on:
+
+```bash
+http://localhost:5173
+```
+
+---
+
+## 🚀 Features
+
+* Product catalog fetched from the API
+* Product page with color and quantity selection
+* Cart persisted in `localStorage`, merging identical products (same sofa and same color)
+* Quantity update and product removal directly from the cart
+* Order form sending the contact details and the products to the API
+* Confirmation page displaying the order number
+
+---
+
+## 🏗️ Project Structure
+
+```text
+front/src/
+├── assets/
+├── components/
+│   ├── CartProducts/
+│   ├── Footer/
+│   ├── Navbar/
+│   ├── OrderForm/
+│   ├── ProductDetails/
+│   └── ProductsList/
+├── hooks/
+├── pages/
+├── services/
+├── App.jsx
+└── main.jsx
+
+back/
+├── controllers/
+├── models/
+├── routes/
+├── app.js
+└── server.js
+```
+
+### Structure Overview
+
+#### Frontend
+
+* components/ – Reusable UI components, each with its own stylesheet
+* hooks/ – Custom React hooks (form state management)
+* pages/ – Home, product, cart and confirmation views
+* services/ – API calls (Axios) and cart management (localStorage)
+* App.jsx – Routing configuration
+* main.jsx – Application entry point
+
+#### Backend
+
+* controllers/ – Product and order logic
+* models/ – Product catalog stored in memory (no database)
+* routes/ – Express API routes
+
+---
+
+## 📡 API Architecture
+
+The frontend communicates with the backend through Axios, while the cart is stored locally in the browser.
+
+```text
+React component
+        ↓
+Service layer
+   ↓           ↓
+Axios      localStorage
+   ↓
+Express API
+```
+
+---
+
+## 📊 Project Status
+
+The project is complete and is no longer actively developed.
+
+---
+
+## 📝 Notes
+
+The goal of the React rebuild was to practice:
+
+* React components and hooks
+* Client-side routing with React Router
+* State management for a shopping cart
+* API communication with Axios
+* Separation of concerns between UI and services
