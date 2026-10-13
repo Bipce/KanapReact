@@ -75,7 +75,7 @@ http://localhost:5173
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
 * Product catalog fetched from the API
 * Product page with color and quantity selection
